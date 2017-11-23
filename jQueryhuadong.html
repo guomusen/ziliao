@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jq滑动导航-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+ul {
+	overflow:hidden;
+	position:relative;
+	list-style:none;
+}
+ul li {
+	float:left;
+	padding:10px 20px;
+	background:#ccc;
+	color:#fff;
+	font-size:20px;
+	cursor:pointer;
+	transition:all .2s linear;
+}
+ul span {
+	display:block;
+	width:100%;
+	height:2px;
+	background:#f60;
+	position:absolute;
+	bottom:0;
+}
+ul li:hover {
+	color:red;
+}
+</style>
+</head>
+<body>
+<ul>
+    <li>lebron - 23</li>
+    <li>wade - 9</li>
+    <li>harden - 13</li>
+    <li>embiid - 21</li>
+    <li>paul - 3</li>
+    <span class="line"></span>
+</ul>
+
+<script>
+$('ul span').css({
+    'left': $('ul li').eq(0).position().left,
+    'width': $('ul li').eq(0).outerWidth()
+});
+$('ul li').hover(function() {
+    $('ul span').stop().animate({
+        left: $(this).position().left,
+        width: $(this).outerWidth()
+    });
+}, function() {
+    $('ul span').stop().animate({
+        left: $('ul li').eq(0).position().left,
+        width: $('ul li').eq(0).outerWidth()
+    });
+})
+$('ul').on("click", "li", function() {
+    $('ul span').stop().animate({
+        left: $(this).position().left,
+        width: $(this).outerWidth()
+    });
+})
+</script>
+
+</body>
+</html>
