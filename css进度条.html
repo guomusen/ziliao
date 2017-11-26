@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>进度条</title>
+    <style>
+        .loading{
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        .pic{
+            width: 50px;
+            height:50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .pic i{
+            display: block;
+            float: left;
+            width: 6px;
+            height: 50px;
+            background-color: cyan;
+            margin:0 2px;
+            transform: scaleY(0.4);
+            animation: load 1.2s infinite;
+        }
+        .pic i:nth-child(2){
+            animation-delay: 0.1s
+        }
+        .pic i:nth-child(3){
+            animation-delay: 0.1s
+        }
+        .pic i:nth-child(4){animation-delay: 0.1s}
+        .pic i:nth-child(5){animation-delay: 0.1s}
+        @keyframes load{
+            0%,40%,100%{transform: scaleY(0.4);}
+            20%{transform: scaleY(1)}
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="loading">
+        <div class="pic">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+    </div>
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627159&di=a5492b07d92fb38c187a5a9cc4096ce3&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Ffd039245d688d43f9e500938741ed21b0ff43b7a.jpg"alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627159&di=16882d4daf2acf5c144932990d43ee9c&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0824ab18972bd40719094a3772899e510eb30929.jpg" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627158&di=bd9f1941340b9596b44de47ea449d1e3&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fa9d3fd1f4134970a489111e59ccad1c8a6865d1d.jpg" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627159&di=a5492b07d92fb38c187a5a9cc4096ce3&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Ffd039245d688d43f9e500938741ed21b0ff43b7a.jpg"alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627159&di=16882d4daf2acf5c144932990d43ee9c&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0824ab18972bd40719094a3772899e510eb30929.jpg" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627158&di=bd9f1941340b9596b44de47ea449d1e3&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fa9d3fd1f4134970a489111e59ccad1c8a6865d1d.jpg" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627159&di=a5492b07d92fb38c187a5a9cc4096ce3&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Ffd039245d688d43f9e500938741ed21b0ff43b7a.jpg"alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627159&di=16882d4daf2acf5c144932990d43ee9c&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0824ab18972bd40719094a3772899e510eb30929.jpg" alt="">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511711627158&di=bd9f1941340b9596b44de47ea449d1e3&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fa9d3fd1f4134970a489111e59ccad1c8a6865d1d.jpg" alt="">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script>
+        document.onreadystatechange=function(){
+                console.log(document.readyState)
+                if (document.readyState=='complete') {
+                    $('.loading').fadeOut()
+                }
+        }
+    </script>
+</body>
+
+</html>
