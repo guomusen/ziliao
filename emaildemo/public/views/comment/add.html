@@ -1,0 +1,72 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加回复</title>
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/jquery.validate.min.js"></script>
+    <script src="/lib/messages_zh.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/api/v1/comment/add" method="post">
+            <div class="form-group">
+                <select name="post" id="selPost" class="form-control">
+                    
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="author" id="selAuthor" class="form-control">
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="content" placeholder="请输入内容">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-primary">确认添加</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        $.getJSON('/api/v1/post/list', function (data) {
+            var str = '<option>请选择</option>'
+            data.data.forEach(function (item) {
+                str += `
+                <option value=${item._id.toString()}>${item.title}</option>
+                `
+            });
+            $("#selPost").html(str);
+        })
+        $.getJSON('/api/v1/user/list', function (data) {
+            var str = '<option>请选择</option>'
+            data.data.forEach(function (item) {
+                str += `
+                <option value=${item._id.toString()}>${item.name}</option>
+                `
+            });
+            $("#selAuthor").html(str);
+        })
+        $('form').validate({
+            rules: {
+                content: {
+                    required: true,
+                    minlength: 5
+                }, 
+                author: {
+                    required: true
+                }, 
+                post: {
+                    required: true
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

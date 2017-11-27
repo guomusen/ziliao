@@ -1,0 +1,64 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>邮件数据展示</title>
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/template-web.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div style="margin:20px 0">
+            <a href="/views/post/add.html" class="btn btn-primary pull-right">添加邮件</a>
+            <a href="/views/user/index.html" class="btn btn-info pull-right">首页</a>
+        </div>
+        <table class="table table-bordered">
+            <tr>
+                <th>序号</th>
+                <th>标题</th>
+                <th>作者</th>
+                <th>内容</th>
+                <th>评论个数</th>
+                <th>操作</th>
+            </tr>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+    <script type="text/html" id="result">
+        {{each posts post index}}
+        <tr>
+            <td>{{index + 1}}</td>
+            <td>{{post.title}}</td>
+            <td>{{post.author.name}}</td>
+            <td>{{post.content}}</td>
+            <td>{{post.comments.length}}</td>
+            <td>
+                <a href="javascript:void(0);" onclick="deletePostById('{{post._id.toString()}}')">删除</a>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <script>
+        $.getJSON("/api/v1/post/list", function (data) {
+            console.log(data);
+            var str = template("result",{posts:data.data});
+            $("#tbody").html(str);
+        })
+        function deletePostById(id){
+            $.post('/api/v1/post/delete/'+id,function(data){
+                if (data.code == "success") {
+                    location.reload();
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
