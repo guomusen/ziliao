@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>黑客帝国</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var fontSize = 24;
+        // 共有多少列
+        var columnCount = canvas.width / fontSize;
+        // Array.from 从一个类似数组或可迭代对象中创建一个新的数组实例
+        // Array.from 方法有一个可选参数 mapFn 。可以在生成的数组上再执行一次map方法后再返回
+        var rows = Array.from({ length: columnCount }, x => 0);
+        // 设置字体
+        context.font = fontSize + 'px arial';
+        context.fillStyle = '#0F0';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        function draw() {
+            draw.times ? draw.times++ : draw.times = 1
+            if (draw.times % 2 == 0) {
+                // 通过透明黑色，可以每次都将上一次的画面隐去一点
+                context.fillStyle = 'rgba(0,0,0,0.05)'
+                context.fillRect(0,0,canvas.width,canvas.height);
+                context.fillStyle = '#0F0';
+
+                for (let i = 0; i < columnCount; i++) {
+                    // 获取随机显示的字体
+                    var text = Math.floor(Math.random() * 10);
+                    context.fillText(text,i*fontSize,rows[i]*fontSize);
+                    // 当随机数大于0.95，则让该列对应显示的行变为第一行
+                    if (Math.random()>0.95) {
+                        rows[i] = 0;
+                    }
+                    // 行加1
+                    rows[i]++;
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+        requestAnimationFrame(draw);
+    </script>
+</body>
+
+</html>
